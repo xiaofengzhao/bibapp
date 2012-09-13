@@ -1,0 +1,10 @@
+%table#groups
+  %tr
+    %th.span-10 #{t('.group_name')}
+    %th.span-10 #{t('.parent_group')}
+    %th.span-2.last #{t('.members')}
+  - groups.each do |group|
+    %tr{:class => cycle("even", "odd")}
+      %td= link_to group.name, group
+      %td= parent_link(group)
+      %td= group.memberships.length

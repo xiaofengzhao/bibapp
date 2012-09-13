@@ -1,0 +1,13 @@
+- include_stylesheet('specific/contributorships/_contributorship')
+.span-14.contributorship{:id => "contributorship_id-#{contributorship.id}"}
+  .span-9
+    = check_box_tag "contrib_id[]", "#{contributorship.id}", false, :class => 'left child-checkbox'
+    = render "shared/proper_work", :work => contributorship.work, :links => []
+  .prepend-2.span-3.last
+    .span-3{:id => "contributorship_admin-#{contributorship.id}"}
+      - if contributorship.verified?
+        %p
+          %strong #{t('.verified')}!
+      - else
+        .span-3.big-number.contributorship_score{:id => "contributorship_score-#{contributorship.id}"}
+          %strong #{t('app.percent_sure', :percentage => contributorship.score)}

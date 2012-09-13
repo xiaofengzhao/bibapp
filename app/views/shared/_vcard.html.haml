@@ -1,0 +1,26 @@
+.vcard.span-8.hide
+  .span-4
+    = render "shared/person_image", :o => o
+  %a.fn.url.hide{:href => ""}
+    = o.name
+  .adr
+    %span.work
+    %div.street-address
+      = o.office_address_line_one
+    %span.locality
+      = o.office_city
+    %span.region
+      = o.office_state
+    %span.postal-code
+      = o.office_zip
+  - if o.phone
+    %div.tel
+      %span.type.hide Work
+      = o.phone
+  - if o.email
+    %div.email
+      %span.type.hide Work
+      %a{:href => "mailto:#{o.email}"}
+        = o.email
+
+

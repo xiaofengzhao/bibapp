@@ -1,0 +1,18 @@
+-#
+-# Render People facets from Solr data
+-#
+- #count and randomize may be passed
+- count ||= nil
+- randomize ||= false
+.span-15
+  %h3 #{Person.model_name.human_pl}
+  %ol#people
+    - convert_and_filter_people_facets(@facets[:people_data], count, @group, controller.controller_name == 'groups', randomize).each do |fields|
+      %li.inline
+        .person.span-3
+          .person-image-wrapper
+            = link_to(image_tag(fields[:image_url], :size => "75x100", :alt => fields[:last_name], :title => fields[:last_name], :class => 'person-image'), person_path(fields[:id]))
+          .person-image-metadata
+            %strong= fields[:value]
+          .person-last-name.left
+            %strong= link_to fields[:last_name], person_path(fields[:id])
